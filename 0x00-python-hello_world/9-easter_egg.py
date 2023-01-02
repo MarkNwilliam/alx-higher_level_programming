@@ -1,2 +1,2 @@
-#1/usr/bin/python3
+#1/usr / bin / python3
 import this
