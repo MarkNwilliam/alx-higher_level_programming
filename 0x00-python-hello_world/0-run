@@ -1,7 +1,17 @@
-import subprocess
 
-# Set the name of the Python script to run
-py_file = "myscript.py"
 
-# Run the Python script
-subprocess.run(["python", py_file])
+#!/ bin / bash
+
+
+
+python $PYFILE
+
+
+
+
+
+
+
+
+
+
