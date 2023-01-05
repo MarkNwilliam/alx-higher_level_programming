@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-import py_print
+print("#pythoniscool", end='\n')
