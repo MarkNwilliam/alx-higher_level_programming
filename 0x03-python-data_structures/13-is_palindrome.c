@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "lists.h"
 
-
 int is_palindrome(listint_t **head) {
     // Check if the list is empty or has only one element
     if (*head == NULL || (*head)->next == NULL) {
