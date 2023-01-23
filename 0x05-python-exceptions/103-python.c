@@ -1,8 +1,4 @@
 #include <Python.h>
-#include <stdio.h>
-#include <listobject.h>
-#include <object.h>
-#include <floatobject.h>
 
 
 void print_python_list(PyObject *p)
