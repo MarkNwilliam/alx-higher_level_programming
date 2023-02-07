@@ -1,38 +1,30 @@
 #!/usr/bin/python3
 import sys
+import signal
 
+lines_processed = 0
+total_size = 0
+status_code_counts = {}
 
-def print_status():
-    '''
-        Printing the status of the request
-    '''
-    counter = 0
-    size = 0
-    file_size = 0
-    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
-                    "403": 0, "404": 0, "405": 0, "500": 0}
+def handle_keyboard_interrupt(signal, frame):
+    print("File size: {}".format(total_size))
+    for status_code in sorted(status_code_counts.keys()):
+        print("{}: {}".format(status_code, status_code_counts[status_code]))
+    sys.exit(0)
 
-    for l in sys.stdin:
-        line = l.split()
-        try:
-            size += int(line[-1])
-            code = line[-2]
-            status_codes[code] += 1
-        except:
-            continue
-        if counter == 9:
-            print("File size: {}".format(size))
-            for key, val in sorted(status_codes.items()):
-                if (val != 0):
-                    print("{}: {}".format(key, val))
-            counter = 0
-        counter += 1
-    if counter < 9:
-        print("File size: {}".format(size))
-        for key, val in sorted(status_codes.items()):
-            if (val != 0):
-                print("{}: {}".format(key, val))
+signal.signal(signal.SIGINT, handle_keyboard_interrupt)
 
+for line in sys.stdin:
+    lines_processed += 1
+    parts = line.strip().split()
+    status_code = int(parts[-2])
+    size = int(parts[-1])
+    total_size += size
 
-if __name__ == "__main__":
-    print_status()
+    if status_code in status_code_counts:
+        status_code_counts[status_code] += 1
+    else:
+        status_code_counts[status_code] = 1
+
+    if lines_processed % 10 == 0:
+        handle_keyboard_interrupt(None, None)
