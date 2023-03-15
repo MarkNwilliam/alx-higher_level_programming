@@ -1,15 +1,12 @@
--- Use 'hbtn_0d_tvshows' to list all genres not linked to show 'Dexter'
--- 'tv_shows' table contains only one record where title = Dexter
--- Each record should display tv_genres.name
--- Results must be sorted ascending order by genre name
--- You can use max of two SELECT statements
-SELECT g.name
-FROM tv_genres g
-WHERE g.name NOT IN (
-      SELECT g.name
-      FROM tv_genres g
-      INNER JOIN tv_show_genres m ON g.id = m.genre_id
-      INNER JOIN tv_shows s ON m.show_id = s.id
-      WHERE s.title = 'Dexter'
-)
-ORDER BY g.name ASC;
+-- not my genre
+-- select stuff
+SELECT DISTINCT tv_genres.name
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_show_genres.show_id = tv_shows.id
+LEFT JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+WHERE tv_genres.name NOT IN (
+SELECT g.name FROM tv_genres g, tv_show_genres t, tv_shows s
+WHERE g.id = t.genre_id
+    AND t.show_id = s.id
+    AND s.title = "Dexter"
+) ORDER BY tv_genres.name;
