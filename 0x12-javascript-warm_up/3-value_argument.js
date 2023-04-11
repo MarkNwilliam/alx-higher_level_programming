@@ -3,6 +3,7 @@
 'use strict';
 
 const firstArg = process.argv[2];
+
 if (firstArg === undefined) {
     console.log('No argument');
 } else {
