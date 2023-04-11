@@ -6,8 +6,7 @@ let args = process.argv.slice(2).map((x) => {
 
 if (args.length <= 1) {
   console.log(0);
-} 
-else {
+} else {
   console.log(args.sort((a, b) => {
     return b - a;
   })[1]);
