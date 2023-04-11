@@ -1,5 +1,9 @@
 #!/usr/bin/node
+// Use strict mode to enforce better coding practices
+'use strict';
+
 const firstArg = process.argv[2];
+
 if (firstArg === undefined) {
     console.log('No argument');
 } else {
