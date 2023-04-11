@@ -1,4 +1,6 @@
-#!/usr/bin/node
+#!/usr/bin/node;
+'use strict';
+
 const strings = ['C is fun', 'Python is cool', 'Javascript is amazing'];
 
 for (let i = 0; i < strings.length; i++) {
