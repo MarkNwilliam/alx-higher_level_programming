@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-"""Class definition of a state and an instance Base = declarative_base()"""
-from sqlalchemy import Column, Integer, String
+"""Definition of the State class"""
+
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
 
 
 class State(Base):
-    """Class for State"""
-    __tablename__ = 'states'
+    """Class State"""
 
-    id = Column(Integer, primary_key=True)
+    __tablename__ = 'states'
+    id = Column(Integer, autoincrement=True,
+                primary_key=True, nullable=False, unique=True)
     name = Column(String(128), nullable=False)
